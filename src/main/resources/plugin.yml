@@ -1,0 +1,8 @@
+name: TimeSpigotAPI
+version: '${version}'
+main: net.timenation.timespigotapi.TimeSpigotAPI
+api-version: 1.18
+author: ByRaudy
+
+depend:
+  - ProtocolLib
