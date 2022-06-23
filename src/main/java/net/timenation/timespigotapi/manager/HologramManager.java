@@ -1,6 +1,6 @@
 package net.timenation.timespigotapi.manager;
 
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
@@ -8,8 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.timenation.timespigotapi.manager.language.I18n;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
@@ -61,7 +61,7 @@ public class HologramManager {
             entityArmorStand.randomTeleport(hologramLocation.getX(), hologramLocation.getY() - ABS, hologramLocation.getZ(), false, PlayerTeleportEvent.TeleportCause.UNKNOWN);
             entityArmorStand.setInvisible(true);
             entityArmorStand.setNoGravity(true);
-            entityArmorStand.setCustomName(new TextComponent(line));
+            entityArmorStand.setCustomName(Component.nullToEmpty(line));
             entityArmorStand.setCustomNameVisible(true);
 
             ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundAddEntityPacket(entityArmorStand));

@@ -10,7 +10,7 @@ import net.timenation.timespigotapi.manager.language.I18n;
 import net.timenation.timespigotapi.player.TimePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 

@@ -2,7 +2,7 @@ package net.timenation.timespigotapi.manager.bot;
 
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.PlayerDisguise;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,8 +16,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityTargetEvent;
@@ -48,7 +48,7 @@ public class PvPBot extends net.minecraft.world.entity.monster.Zombie {
         this.getEntity().setMetadata(META_DATA, new FixedMetadataValue(plugin, ""));
         this.getEntity().setShouldBurnInDay(false);
         this.getEntity().setRemoveWhenFarAway(false);
-        this.setCustomName(new TextComponent(name));
+        this.setCustomName(Component.nullToEmpty(name));
         this.setCustomNameVisible(true);
         this.playerDisguise = new PlayerDisguise(name);
         this.playerDisguise.setName("§cGEGNER | " + name);
@@ -73,7 +73,7 @@ public class PvPBot extends net.minecraft.world.entity.monster.Zombie {
         this.getEntity().setMetadata(META_DATA, new FixedMetadataValue(plugin, ""));
         this.getEntity().setShouldBurnInDay(false);
         this.getEntity().setRemoveWhenFarAway(false);
-        this.setCustomName(new TextComponent(name));
+        this.setCustomName(Component.nullToEmpty(name));
         this.setCustomNameVisible(true);
         this.playerDisguise = new PlayerDisguise(name);
         this.playerDisguise.setNameVisible(true);
@@ -172,7 +172,7 @@ public class PvPBot extends net.minecraft.world.entity.monster.Zombie {
     }
 
     @Override
-    protected boolean shouldDropExperience() {
+    public boolean shouldDropExperience() {
         return false;
     }
 

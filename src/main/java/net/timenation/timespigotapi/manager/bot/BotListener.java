@@ -6,7 +6,7 @@ import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.ItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftZombie;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftZombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
