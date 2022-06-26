@@ -1,11 +1,14 @@
 package net.timenation.timespigotapi.manager;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.timenation.timespigotapi.TimeSpigotAPI;
+import net.timenation.timespigotapi.data.Components;
 import net.timenation.timespigotapi.manager.language.I18n;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
@@ -55,17 +58,16 @@ public class HologramManager {
     }
 
     private void display(Player player) {
-        Location hologramLocation = location.clone().add(0, (ABS * lines.size()) - 1.97D, 0);
+        Location hologramLocation = location.clone().add(0, (ABS * lines.size()), 0);
         for (String line : lines) {
-            ArmorStand entityArmorStand = new ArmorStand(EntityType.ARMOR_STAND, ((CraftWorld) hologramLocation.getWorld()).getHandle());
-            entityArmorStand.randomTeleport(hologramLocation.getX(), hologramLocation.getY() - ABS, hologramLocation.getZ(), false, PlayerTeleportEvent.TeleportCause.UNKNOWN);
+            ArmorStand entityArmorStand = new ArmorStand(((CraftWorld) hologramLocation.getWorld()).getHandle(), hologramLocation.getX(), hologramLocation.getY() - 0.23, hologramLocation.getZ());
             entityArmorStand.setInvisible(true);
             entityArmorStand.setNoGravity(true);
-            entityArmorStand.setCustomName(Component.nullToEmpty(line));
+            entityArmorStand.setCustomName(Component.literal(line));
             entityArmorStand.setCustomNameVisible(true);
 
-            ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundAddEntityPacket(entityArmorStand));
-            ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundSetEntityDataPacket(entityArmorStand.getId(), entityArmorStand.getEntityData(), false));
+            ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundAddEntityPacket(entityArmorStand, entityArmorStand.getId()));
+            ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundSetEntityDataPacket(entityArmorStand.getId(), entityArmorStand.getEntityData(), true));
             getEntityArmorStandList().add(entityArmorStand);
             hologramLocation.add(0, -ABS, 0);
         }
