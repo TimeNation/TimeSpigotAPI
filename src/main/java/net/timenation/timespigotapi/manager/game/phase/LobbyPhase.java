@@ -31,7 +31,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
      */
     public abstract void setDefaultKit();
     public abstract void startCountdown();
-    public abstract void updateScoreboard();
+    public abstract void updateScoreboard(Player player);
     
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
@@ -46,7 +46,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
 
             Bukkit.getOnlinePlayers().forEach(current -> {
                 current.sendMessage(I18n.format(current, timeGame.getPrefix(), "api.game.messages.join", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
-                updateScoreboard();
+                updateScoreboard(player);
             });
 
             return;

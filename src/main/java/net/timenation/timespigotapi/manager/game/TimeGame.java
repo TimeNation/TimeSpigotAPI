@@ -2,6 +2,7 @@ package net.timenation.timespigotapi.manager.game;
 
 import eu.thesimplecloud.api.CloudAPI;
 import lombok.Getter;
+import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.game.defaultitems.DefaultGameQuitItem;
 import net.timenation.timespigotapi.manager.game.gamestates.GameState;
 import net.timenation.timespigotapi.manager.game.manager.ConfigManager;
@@ -53,13 +54,13 @@ public abstract class TimeGame extends JavaPlugin {
         return world;
     }
     public String getPrefix() {
-        return "§8» " + color + "§l" + prefix + " §8〣 §7";
+        return TimeSpigotAPI.getInstance().getColorAPI().process("§8» " + color + "§l" + prefix + " §8- §7");
     }
     public String getColor() {
-        return color;
+        return TimeSpigotAPI.getInstance().getColorAPI().process(color);
     }
     public String getSecoundColor() {
-        return secoundColor;
+        return TimeSpigotAPI.getInstance().getColorAPI().process(secoundColor);
     }
     public String getGameName() {return prefix;}
     public HashMap<Player, String> getPlayerKit() {
