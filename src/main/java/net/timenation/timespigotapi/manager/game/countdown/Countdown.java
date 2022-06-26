@@ -39,7 +39,7 @@ public abstract class Countdown<timeGame extends TimeGame> {
                 switch (countdown) {
                     case 60, 50, 40, 30, 20, 15 -> {
                         Bukkit.getOnlinePlayers().forEach(player -> {
-                            player.sendMessage(I18n.format(player, game.getPrefix(), "api.game.messages.countdown", game.getSecoundColor(), countdown));
+                            player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown", game.getSecoundColor(), countdown));
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
                         });
                     }
@@ -47,14 +47,14 @@ public abstract class Countdown<timeGame extends TimeGame> {
                         at10();
                         Bukkit.getOnlinePlayers().forEach(player -> {
                             if(player.hasPermission("timenation.forcemap")) player.getInventory().getItem(22).setType(Material.BARRIER);
-                            player.sendMessage(I18n.format(player, game.getPrefix(), "api.game.messages.countdown", game.getSecoundColor(), countdown));
+                            player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown", game.getSecoundColor(), countdown));
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
                         });
                     }
                     case 1 -> before0();
                     case 0 -> {
                         Bukkit.getOnlinePlayers().forEach(player -> {
-                            player.sendMessage(I18n.format(player, "api.game.messages.gamestart", game.getPrefix()));
+                            player.sendMessage(I18n.format(player, "game.messages.gamestart", game.getPrefix()));
                             player.getInventory().clear();
                             player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 0);
                             player.setLevel(0);
@@ -71,7 +71,7 @@ public abstract class Countdown<timeGame extends TimeGame> {
 
                 Bukkit.getOnlinePlayers().forEach(player -> {
                     if (countdown > 0 && countdown < 6) {
-                        player.sendMessage(I18n.format(player, game.getPrefix(), "api.game.messages.countdown", game.getSecoundColor(), countdown));
+                        player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown", game.getSecoundColor(), countdown));
                         player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
                     }
 
@@ -104,10 +104,10 @@ public abstract class Countdown<timeGame extends TimeGame> {
                     game.getSpecatePlayers().remove(player);
 
                     if(countdown != 0) {
-                        player.sendMessage(I18n.format(player, game.getPrefix(), "api.game.messages.countdown.stop", game.getSecoundColor(), countdown));
+                        player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown.stop", game.getSecoundColor(), countdown));
                     }
                     if(countdown == 0) {
-                        player.sendMessage(I18n.format(player, game.getPrefix(), "api.game.messages.countdown.stop", game.getSecoundColor(), countdown));
+                        player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown.stop", game.getSecoundColor(), countdown));
                         TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, game.getGameName()));
                         CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId()).sendToLobby();
                         Bukkit.shutdown();

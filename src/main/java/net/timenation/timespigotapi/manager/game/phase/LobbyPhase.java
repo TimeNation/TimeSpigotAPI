@@ -45,7 +45,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
             if(Bukkit.getOnlinePlayers().size() == timeGame.getNeededPlayers()) startCountdown();
 
             Bukkit.getOnlinePlayers().forEach(current -> {
-                current.sendMessage(I18n.format(current, timeGame.getPrefix(), "api.game.messages.join", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
+                current.sendMessage(I18n.format(current, timeGame.getPrefix(), "game.messages.join", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
                 updateScoreboard(player);
             });
 
@@ -59,7 +59,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
             current.hidePlayer(timeGame, player);
         });
         player.getInventory().clear();
-        player.getInventory().setItem(0, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, "api.game.item.teleporter")).build());
+        player.getInventory().setItem(0, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, "game.item.teleporter")).build());
         timeGame.defaultGameQuitItem.setItem(player);
         TimeSpigotAPI.getInstance().getTablistManager().registerRankTeam(player, "§c✗ §8» ", "", ChatColor.GRAY, 18);
         player.teleport(new Location(Bukkit.getWorld("world"), 111.5, 114.00, -262.5, -45, 0));

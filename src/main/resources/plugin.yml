@@ -1,7 +1,7 @@
 name: TimeSpigotAPI
 version: '${version}'
 main: net.timenation.timespigotapi.TimeSpigotAPI
-api-version: 1.18
+api-version: 1.19
 author: ByRaudy
 
 depend:

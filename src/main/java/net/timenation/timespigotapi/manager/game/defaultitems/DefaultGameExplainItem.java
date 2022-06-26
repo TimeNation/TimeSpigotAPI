@@ -29,12 +29,12 @@ public class DefaultGameExplainItem implements Listener {
     }
 
     public void setItem(Player player) {
-        player.getInventory().setItem(slot, new ItemManager(Material.BOOK, 1).setDisplayName(I18n.format(player, "api.game.item.explain", game.getPrefix())).build());
+        player.getInventory().setItem(slot, new ItemManager(Material.BOOK, 1).setDisplayName(I18n.format(player, "game.item.explain", game.getPrefix())).build());
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.BOOK, 1).setDisplayName(I18n.format(event.getPlayer(), "api.game.item.explain", game.getPrefix())).build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.BOOK, 1).setDisplayName(I18n.format(event.getPlayer(), "game.item.explain", game.getPrefix())).build());
     }
 
     @EventHandler
@@ -45,7 +45,7 @@ public class DefaultGameExplainItem implements Listener {
         }
 
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.BOOK) && event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, "api.game.item.explain", game.getPrefix()))) {
+            if(event.getItem().getType().equals(Material.BOOK) && event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, "game.item.explain", game.getPrefix()))) {
                 player.sendMessage(" ");
                 player.sendMessage(I18n.format(player, TimeSpigotAPI.getInstance().getColorAPI().process(translateKey)));
                 player.sendMessage(" ");

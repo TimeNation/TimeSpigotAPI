@@ -30,12 +30,12 @@ public class ForcemapModule implements Listener {
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
         if(event.getPlayer().hasPermission("timenation.forcemap")) {
-            event.getPlayer().getInventory().setItem(22, new ItemManager(timeGame.getCountdown() > 10 ? Material.FLOWER_BANNER_PATTERN : Material.BARRIER, 1).setDisplayName(I18n.format(event.getPlayer(), "api.game.item.forcemap", timeGame.getPrefix())).build());
+            event.getPlayer().getInventory().setItem(22, new ItemManager(timeGame.getCountdown() > 10 ? Material.FLOWER_BANNER_PATTERN : Material.BARRIER, 1).setDisplayName(I18n.format(event.getPlayer(), "game.item.forcemap", timeGame.getPrefix())).build());
         }
     }
 
     private void openForcemapInventory(Player player) {
-        var inventory = Bukkit.createInventory(null, 9 * 5, I18n.format(player, "api.game.inventory.forcemap.title", timeGame.getPrefix()));
+        var inventory = Bukkit.createInventory(null, 9 * 5, I18n.format(player, "game.inventory.forcemap.title", timeGame.getPrefix()));
 
         for (int i = 0; i < 9; i++) {
             inventory.setItem(i, blackGlass);
@@ -56,7 +56,7 @@ public class ForcemapModule implements Listener {
         inventory.setItem(35, blackGlass);
 
         for (File files : new File("plugins/" + timeGame.getGameName() + "/maps").listFiles()) {
-            inventory.addItem(new ItemManager(Material.getMaterial(new ConfigManager(timeGame.getGameName(), files.getName()).getString("mapMaterial")), 1).setDisplayName("§8» " + timeGame.getColor() + files.getName().replace(".json", "")).setLore(I18n.format(player, "api.game.forcemap.item.map.lore", (Object) new ConfigManager(timeGame.getGameName(), files.getName()).getString("mapBuilder"))).build());
+            inventory.addItem(new ItemManager(Material.getMaterial(new ConfigManager(timeGame.getGameName(), files.getName()).getString("mapMaterial")), 1).setDisplayName("§8» " + timeGame.getColor() + files.getName().replace(".json", "")).setLore(I18n.format(player, "game.forcemap.item.map.lore", (Object) new ConfigManager(timeGame.getGameName(), files.getName()).getString("mapBuilder"))).build());
         }
 
         player.openInventory(inventory);
@@ -72,12 +72,12 @@ public class ForcemapModule implements Listener {
             }
         }
 
-        if (event.getView().getTitle().equals(I18n.format(player, "api.game.inventory.forcemap.title", timeGame.getPrefix()))) {
+        if (event.getView().getTitle().equals(I18n.format(player, "game.inventory.forcemap.title", timeGame.getPrefix()))) {
             timeGame.configManager = new ConfigManager(timeGame.getGameName(), event.getCurrentItem().getItemMeta().getDisplayName().replace("§8» " + timeGame.getColor(), "") + ".json");
             timeGame.setGameMap(timeGame.configManager.getString("mapName"), timeGame.configManager.getString("mapBuilder"), Bukkit.getWorld(timeGame.configManager.getString("mapWorld")));
 
             player.closeInventory();
-            player.sendMessage(I18n.format(player, timeGame.getPrefix(), "api.game.messages.forcemap.complete", timeGame.getGameMap()));
+            player.sendMessage(I18n.format(player, timeGame.getPrefix(), "game.messages.forcemap.complete", timeGame.getGameMap()));
 
             if (timeGame.isGameWithKits()) {
                 timeGame.getScoreboardManager().sendLobbyKitScoreboardToPlayer(player, timeGame.getCountdown(), timeGame.getPlayerKit().get(player));

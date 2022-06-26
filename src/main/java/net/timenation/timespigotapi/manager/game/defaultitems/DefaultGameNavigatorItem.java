@@ -30,12 +30,12 @@ public class DefaultGameNavigatorItem implements Listener {
     }
 
     public void setItem(Player player) {
-        player.getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, game.getPrefix(), "api.game.item.navigator", game.getColor())).build());
+        player.getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, game.getPrefix(), "game.item.navigator", game.getColor())).build());
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(event.getPlayer(), game.getPrefix(), "api.game.item.navigator", game.getColor())).build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(event.getPlayer(), game.getPrefix(), "game.item.navigator", game.getColor())).build());
     }
 
     @EventHandler
@@ -47,8 +47,8 @@ public class DefaultGameNavigatorItem implements Listener {
         }
 
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.COMPASS) && event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, "api.game.item.navigator", game.getPrefix()))) {
-                Inventory inventory = Bukkit.createInventory(null, 9*5, I18n.format(player, "api.game.item.navigator.inventory.title", game.getPrefix()));
+            if(event.getItem().getType().equals(Material.COMPASS) && event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, "game.item.navigator", game.getPrefix()))) {
+                Inventory inventory = Bukkit.createInventory(null, 9*5, I18n.format(player, "game.item.navigator.inventory.title", game.getPrefix()));
                 ItemStack blackGlass = new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build();
 
                 for (int i = 0; i < 9; i++) {
@@ -69,8 +69,8 @@ public class DefaultGameNavigatorItem implements Listener {
                 inventory.setItem(27, blackGlass);
                 inventory.setItem(35, blackGlass);
 
-                inventory.setItem(20, new ItemManager(Material.SLIME_BLOCK, 1).setDisplayName(I18n.format(player, "api.game.item.navigator.inventory.item.trampoline", game.getPrefix())).build());
-                inventory.setItem(24, new ItemManager(Material.BARRIER, 1).setDisplayName(I18n.format(player, "api.game.item.navigator.inventory.item.soon", game.getPrefix())).build());
+                inventory.setItem(20, new ItemManager(Material.SLIME_BLOCK, 1).setDisplayName(I18n.format(player, "game.item.navigator.inventory.item.trampoline", game.getPrefix())).build());
+                inventory.setItem(24, new ItemManager(Material.BARRIER, 1).setDisplayName(I18n.format(player, "game.item.navigator.inventory.item.soon", game.getPrefix())).build());
 
                 player.openInventory(inventory);
             }
@@ -83,7 +83,7 @@ public class DefaultGameNavigatorItem implements Listener {
 
         if(event.getCurrentItem() == null || event.getCurrentItem().getType() == null || event.getCurrentItem().getItemMeta() == null || event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
 
-        if(event.getView().getTitle().equals(I18n.format(player, "api.game.item.navigator.inventory.title", game.getPrefix()))) {
+        if(event.getView().getTitle().equals(I18n.format(player, "game.item.navigator.inventory.title", game.getPrefix()))) {
             if (event.getCurrentItem().getType() == Material.SLIME_BLOCK) {
                 player.teleport(new Location(Bukkit.getWorld("world"), 138.5, 109, -237.5, -27, 0));
                 player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1, 0);

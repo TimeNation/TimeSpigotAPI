@@ -33,7 +33,7 @@ public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
 
         if(timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
             Bukkit.getOnlinePlayers().forEach(current -> {
-                current.sendMessage(I18n.format(player, timeGame.getPrefix(), "api.game.messages.quit", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
+                current.sendMessage(I18n.format(player, timeGame.getPrefix(), "game.messages.quit", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));
             });
 
             if(Bukkit.getOnlinePlayers().size() - 1 < timeGame.getNeededPlayers()) stopCountdown();
@@ -52,8 +52,8 @@ public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
                     current.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 0);
                     current.getInventory().clear();
                     current.setGameMode(GameMode.SURVIVAL);
-                    current.sendTitle(I18n.format(current, "api.game.title.loose.top"), I18n.format(current, "api.game.title.loose.bottom"));
-                    current.sendMessage(I18n.format(player, "api.game.messages.playerlostgame", crystals));
+                    current.sendTitle(I18n.format(current, "game.title.loose.top"), I18n.format(current, "game.title.loose.bottom"));
+                    current.sendMessage(I18n.format(player, "game.messages.playerlostgame", crystals));
                     timeGame.defaultGameQuitItem.setItem(current);
                     TimeSpigotAPI.getInstance().getTimePlayerManager().updateTimePlayer(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(current));
                 });
@@ -61,9 +61,9 @@ public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
                 for(Player winner : timeGame.getPlayers()) {
                     int crystals = ThreadLocalRandom.current().nextInt(50, 75);
 
-                    winner.sendMessage(I18n.format(player, "api.game.actionbar.playerhaswongame", timeGame.getPrefix()));
-                    winner.sendTitle(I18n.format(player, "api.game.title.win.top"), I18n.format(player, "api.game.title.win.bottom"));
-                    winner.sendMessage(I18n.format(player, timeGame.getPrefix(), "api.game.messages.playerhaswongame", crystals));
+                    winner.sendMessage(I18n.format(player, "game.actionbar.playerhaswongame", timeGame.getPrefix()));
+                    winner.sendTitle(I18n.format(player, "game.title.win.top"), I18n.format(player, "game.title.win.bottom"));
+                    winner.sendMessage(I18n.format(player, timeGame.getPrefix(), "game.messages.playerhaswongame", crystals));
                     TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(winner).setCrystals(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(winner).getCrystals() + crystals);
                     TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").setWins(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").getWins() + 1);
                 }

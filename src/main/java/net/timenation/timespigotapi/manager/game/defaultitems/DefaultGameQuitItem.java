@@ -26,12 +26,12 @@ public class DefaultGameQuitItem implements Listener {
     }
 
     public void setItem(Player player) {
-        player.getInventory().setItem(slot, new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(I18n.format(player, game.getPrefix(), "api.game.item.quit", (Object) game.getColor())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEzYjhmNjgxZGFhZDhiZjQzNmNhZThkYTNmZTgxMzFmNjJhMTYyYWI4MWFmNjM5YzNlMDY0NGFhNmFiYWMyZiJ9fX0=").build());
+        player.getInventory().setItem(slot, new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(I18n.format(player, game.getPrefix(), "game.item.quit", (Object) game.getColor())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEzYjhmNjgxZGFhZDhiZjQzNmNhZThkYTNmZTgxMzFmNjJhMTYyYWI4MWFmNjM5YzNlMDY0NGFhNmFiYWMyZiJ9fX0=").build());
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(I18n.format(event.getPlayer(), game.getPrefix(), "api.game.item.quit", (Object) game.getColor())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEzYjhmNjgxZGFhZDhiZjQzNmNhZThkYTNmZTgxMzFmNjJhMTYyYWI4MWFmNjM5YzNlMDY0NGFhNmFiYWMyZiJ9fX0=").build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(I18n.format(event.getPlayer(), game.getPrefix(), "game.item.quit", (Object) game.getColor())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmEzYjhmNjgxZGFhZDhiZjQzNmNhZThkYTNmZTgxMzFmNjJhMTYyYWI4MWFmNjM5YzNlMDY0NGFhNmFiYWMyZiJ9fX0=").build());
     }
 
     @EventHandler
@@ -42,9 +42,9 @@ public class DefaultGameQuitItem implements Listener {
         }
 
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, game.getPrefix(), "api.game.item.quit", (Object) game.getColor()))) {
+            if(event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, game.getPrefix(), "game.item.quit", (Object) game.getColor()))) {
                 CloudAPI.getInstance().getCloudPlayerManager().connectPlayer(CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId()), CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName("Lobby-1"));
-                player.sendMessage(I18n.format(player, "api.game.message.quit.player", game.getPrefix()));
+                player.sendMessage(I18n.format(player, "game.message.quit.player", game.getPrefix()));
             }
         }
     }

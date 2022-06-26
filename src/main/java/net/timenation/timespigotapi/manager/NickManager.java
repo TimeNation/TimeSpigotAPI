@@ -53,7 +53,7 @@ public class NickManager {
         craftPlayer.getHandle().connection.connection.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.ADD_PLAYER, craftPlayer.getHandle()));
 
         player.setMetadata("nickIngame", new FixedMetadataValue(TimeSpigotAPI.getInstance(), false));
-        player.sendMessage(I18n.format(player, I18n.format(player, "api.nick.prefix"), "api.nick.nick", nickname));
+        player.sendMessage(I18n.format(player, I18n.format(player, "nick.prefix"), "nick.nick", nickname));
     }
 
     public void unnick(Player player/*, TimeGame timeGame*/) {
@@ -90,7 +90,7 @@ public class NickManager {
 
         player.teleport(new Location(Bukkit.getWorld("NICK"), 0, 120, 0));
         player.teleport(location);
-        player.sendMessage(I18n.format(player, "api.nick.unnick", I18n.format(player, "api.nick.prefix")));
+        player.sendMessage(I18n.format(player, "nick.unnick", I18n.format(player, "nick.prefix")));
 
         /*if(timeGame.getTeamManager().getTeamFromPlayer(player) != null) {
             timeGame.getTeamManager().sendTablistPrefix(player);

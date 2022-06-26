@@ -63,8 +63,8 @@ public class NPCManager implements Listener {
 
         Bukkit.getScheduler().runTaskTimer(TimeSpigotAPI.getInstance(), () -> {
             Bukkit.getOnlinePlayers().forEach(player -> {
-                if(playerTitle) armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "api.npc.totalplayers", cloudServiceGroup.getOnlinePlayerCount())));
-                else armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "api.npc.rightclick")));
+                if(playerTitle) armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "npc.totalplayers", cloudServiceGroup.getOnlinePlayerCount())));
+                else armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "npc.rightclick")));
 
                 ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundAddEntityPacket(armorStand, armorStand.getId()));
                 ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundSetEntityDataPacket(armorStand.getId(), armorStand.getEntityData(), true));

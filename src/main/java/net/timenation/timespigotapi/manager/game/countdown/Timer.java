@@ -24,7 +24,7 @@ public class Timer {
         Bukkit.getScheduler().runTaskTimerAsynchronously(game, () -> {
             if(game.getGameState().equals(GameState.INGAME)) {
                 Bukkit.getOnlinePlayers().forEach(player -> {
-                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(I18n.format(player, game.getPrefix(), "api.game.actionbar.ingame", getTimeInFormatWithoutHours(this.time), game.getGameMap())));
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(I18n.format(player, game.getPrefix(), "game.actionbar.ingame", getTimeInFormatWithoutHours(this.time), game.getGameMap())));
                 });
                 this.time--;
             }
@@ -37,7 +37,7 @@ public class Timer {
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(game, () -> {
             Bukkit.getOnlinePlayers().forEach(player -> {
-                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(I18n.format(player, game.getPrefix(), "api.private.actionbar.timer", getTimeInFormatWithHours(this.time), game.getGameMap())));
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(I18n.format(player, game.getPrefix(), "private.actionbar.timer", getTimeInFormatWithHours(this.time), game.getGameMap())));
             });
             this.time++;
         }, 0, 20);
