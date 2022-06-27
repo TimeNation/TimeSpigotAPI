@@ -2,6 +2,7 @@ package net.timenation.timespigotapi.manager.game.defaultitems;
 
 import net.timenation.timespigotapi.manager.ItemManager;
 import net.timenation.timespigotapi.manager.game.TimeGame;
+import net.timenation.timespigotapi.manager.game.gamestates.GameState;
 import net.timenation.timespigotapi.manager.language.I18n;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -30,12 +31,12 @@ public class DefaultGameNavigatorItem implements Listener {
     }
 
     public void setItem(Player player) {
-        player.getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, game.getPrefix(), "game.item.navigator", game.getColor())).build());
+        player.getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, "game.item.navigator", game.getPrefix())).build());
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(event.getPlayer(), game.getPrefix(), "game.item.navigator", game.getColor())).build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(event.getPlayer(),"game.item.navigator", game.getPrefix())).build());
     }
 
     @EventHandler
@@ -47,7 +48,7 @@ public class DefaultGameNavigatorItem implements Listener {
         }
 
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.COMPASS) && event.getItem().getItemMeta().getDisplayName().equals(I18n.format(player, "game.item.navigator", game.getPrefix()))) {
+            if(event.getItem().getType().equals(Material.COMPASS) && !game.getGameState().equals(GameState.INGAME)) {
                 Inventory inventory = Bukkit.createInventory(null, 9*5, I18n.format(player, "game.item.navigator.inventory.title", game.getPrefix()));
                 ItemStack blackGlass = new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build();
 

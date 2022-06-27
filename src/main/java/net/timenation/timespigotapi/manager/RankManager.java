@@ -72,7 +72,7 @@ public class RankManager {
         }
 
         public String getRankColor() {
-            return rankColor;
+            return TimeSpigotAPI.getInstance().getColorAPI().process(rankColor);
         }
 
         public String getHexStart() {
@@ -83,8 +83,9 @@ public class RankManager {
             return hexEnd;
         }
 
+        @SneakyThrows
         public String getPlayersRankAndName(UUID uuid) {
-            return TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(Bukkit.getPlayer(uuid)).isNicked() ? rankPrefix + TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(Bukkit.getPlayer(uuid)).getPlayerNickName() : rankPrefix + TimeSpigotAPI.getInstance().getUuidFetcher().getName(uuid);
+            return TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(Bukkit.getPlayer(uuid)).isNicked() ? new JsonParser().parse(new FileReader(new File("ranks/default.json"))).getAsJsonObject().get("rankPrefix").getAsString() + TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(Bukkit.getPlayer(uuid)).getPlayerNickName() : rankPrefix + TimeSpigotAPI.getInstance().getUuidFetcher().getName(uuid);
         }
 
         public String getPlayersNameWithRankColor(UUID uuid) {

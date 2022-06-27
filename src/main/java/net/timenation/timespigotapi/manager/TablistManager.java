@@ -52,6 +52,22 @@ public class TablistManager {
 
     public void setPlayersPrefix(Player player) {
         IPermissionPlayer iPermissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
+
+        if(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).isNicked()) {
+            try {
+                JsonObject jsonObject = new JsonParser().parse(new FileReader(new File("ranks/default.json"))).getAsJsonObject();
+                registerRankTeam(player, TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("rankPrefix").getAsString()), "", ChatColor.valueOf(jsonObject.get("rankChatColor").getAsString()), jsonObject.get("rankPropety").getAsInt());
+                player.setPlayerListName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + player.getName());
+                player.setDisplayName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + player.getName());
+
+                return;
+            } catch (FileNotFoundException exception) {
+                exception.printStackTrace();
+            }
+
+            return;
+        }
+
         for (File file : this.rankFiles) {
             if (file.isDirectory()) continue;
             if(!file.getName().endsWith(".json")) continue;
@@ -71,11 +87,6 @@ public class TablistManager {
                     }
                 } catch (FileNotFoundException ignored) { }
             }
-        }
-
-        if(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).isNicked()) {
-            registerRankTeam(player, "", "", ChatColor.GRAY, 24);
-            return;
         }
     }
 }

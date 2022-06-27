@@ -2,6 +2,7 @@ package net.timenation.timespigotapi.manager.game.defaultitems;
 
 import net.timenation.timespigotapi.manager.ItemManager;
 import net.timenation.timespigotapi.manager.game.TimeGame;
+import net.timenation.timespigotapi.manager.game.gamestates.GameState;
 import net.timenation.timespigotapi.manager.game.team.Team;
 import net.timenation.timespigotapi.manager.language.I18n;
 import org.bukkit.Bukkit;
@@ -46,7 +47,7 @@ public class DefaultGameSelectTeamItem implements Listener {
         Player player = event.getPlayer();
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (event.getItem().getType().equals(Material.BEEHIVE)) {
+            if (event.getItem().getType().equals(Material.BEEHIVE) && !game.getGameState().equals(GameState.INGAME)) {
                 Inventory inventory = Bukkit.createInventory(null, 9 * 3, I18n.format(player, "game.item.selectteam.inventory.title", game.getPrefix()));
                 ItemStack blackGlass = new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build();
 

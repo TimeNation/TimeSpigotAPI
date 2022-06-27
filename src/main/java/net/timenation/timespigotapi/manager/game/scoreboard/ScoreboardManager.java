@@ -72,7 +72,7 @@ public class ScoreboardManager {
         scoreboardBuilder.setLine(0, "§8§m                        ");
         scoreboardBuilder.setLine(1, "§1");
         scoreboardBuilder.setLine(2, I18n.format(player, "game.scoreboard.winner"));
-        scoreboardBuilder.setLine(3, "  §8● " + TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(winner.getUniqueId()).getPlayersRankAndName(winner.getUniqueId()) + game.getSecoundColor() + " ✮");
+        scoreboardBuilder.setLine(3, "  §8● " + TimeSpigotAPI.getInstance().getColorAPI().process(TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(winner.getUniqueId()).getPlayersRankAndName(winner.getUniqueId())) + game.getSecoundColor() + " ✮");
         scoreboardBuilder.setLine(4, "§2");
         scoreboardBuilder.setLine(5, "§r§8§m                        ");
     }

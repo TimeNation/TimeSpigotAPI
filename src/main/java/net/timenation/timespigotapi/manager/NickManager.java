@@ -6,6 +6,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoPacket;
 import net.timenation.timespigotapi.TimeSpigotAPI;
+import net.timenation.timespigotapi.manager.game.TimeGame;
 import net.timenation.timespigotapi.manager.language.I18n;
 import net.timenation.timespigotapi.player.TimePlayer;
 import org.bukkit.Bukkit;
@@ -52,11 +53,12 @@ public class NickManager {
 
         craftPlayer.getHandle().connection.connection.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.ADD_PLAYER, craftPlayer.getHandle()));
 
+        TimeSpigotAPI.getInstance().getTablistManager().setPlayersPrefix(player);
         player.setMetadata("nickIngame", new FixedMetadataValue(TimeSpigotAPI.getInstance(), false));
         player.sendMessage(I18n.format(player, I18n.format(player, "nick.prefix"), "nick.nick", nickname));
     }
 
-    public void unnick(Player player/*, TimeGame timeGame*/) {
+    public void unnick(Player player, TimeGame timeGame) {
         CraftPlayer craftPlayer = (CraftPlayer) player;
         TimePlayer timePlayer = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player);
         GameProfile gameProfile = craftPlayer.getProfile();
@@ -92,12 +94,12 @@ public class NickManager {
         player.teleport(location);
         player.sendMessage(I18n.format(player, "nick.unnick", I18n.format(player, "nick.prefix")));
 
-        /*if(timeGame.getTeamManager().getTeamFromPlayer(player) != null) {
+        if(timeGame.getTeamManager().getTeamFromPlayer(player) != null) {
             timeGame.getTeamManager().sendTablistPrefix(player);
             return;
         }
 
-        TimeSpigotAPI.getInstance().getTablistManager().setPlayersPrefix(player);*/
+        TimeSpigotAPI.getInstance().getTablistManager().setPlayersPrefix(player);
     }
 
     public String randomNickName() {

@@ -15,7 +15,6 @@ public class NickModule implements Listener {
     public NickModule(TimeGame timeGame) {
         this.timeGame = timeGame;
 
-
         Bukkit.getPluginManager().registerEvents(this, timeGame);
     }
 

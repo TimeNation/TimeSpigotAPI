@@ -35,7 +35,7 @@ public class TimePlayerManager {
                 timePlayer.setLanguage(jsonObject.get("playerData").getAsJsonObject().get("language").getAsString());
                 timePlayer.setCrystals(jsonObject.get("playerData").getAsJsonObject().get("crystals").getAsInt());
                 timePlayer.setLootboxes(jsonObject.get("playerData").getAsJsonObject().get("lootboxes").getAsInt());
-                timePlayer.setNickTool(false);
+                timePlayer.setNickTool(resultSet.getBoolean("nick"));
 
                 playerCache.put(player, timePlayer);
                 return timePlayer;
