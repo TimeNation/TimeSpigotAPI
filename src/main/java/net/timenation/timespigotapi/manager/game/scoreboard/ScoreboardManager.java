@@ -21,7 +21,7 @@ public class ScoreboardManager {
     }
 
     public void updateLobbyScoreboard(Player player, int count) {
-        scoreboardBuilders.forEach(scoreboardBuilder -> scoreboardBuilder.setLine(game.isGameWithKits() ? 12 : 9, "  §8● " + game.getColor() + "§l" + count));
+        scoreboardBuilders.forEach(scoreboardBuilder -> scoreboardBuilder.setLine(game.isGameWithKits() ? 12 : 9, "  §8● " + game.getColor() + "§l" + count + "§r " + game.getSecoundColor() + "⌚"));
     }
 
     public void sendLobbyScoreboardToPlayer(Player player, int count) {

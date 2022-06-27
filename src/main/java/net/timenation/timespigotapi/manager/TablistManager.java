@@ -18,7 +18,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 
+
 @SuppressWarnings("ALL")
+// Recode this class
 public class TablistManager {
 
     private static TablistManager instance;

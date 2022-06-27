@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener {
 
     private final TimeGame timeGame;
-    
+
     public LobbyPhase(TimeGame timeGame) {
         this.timeGame = timeGame;
     }
@@ -25,11 +25,11 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
     /*
     If game is not a Kit game, let this methode empty
      */
-    public abstract void setKitStuff();
+    public abstract void setKitStuff(Player player);
     /*
     If game is not a Kit game, let this methode empty
      */
-    public abstract void setDefaultKit();
+    public abstract void setDefaultKit(Player player);
     public abstract void startCountdown();
     public abstract void updateScoreboard(Player player);
     
@@ -40,7 +40,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
 
         if(timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
             player.teleport(new Location(Bukkit.getWorld("world"), 111.5, 114.00, -262.5, -45, 0));
-            setKitStuff();
+            setKitStuff(player);
 
             if(Bukkit.getOnlinePlayers().size() == timeGame.getNeededPlayers()) startCountdown();
 
@@ -54,7 +54,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
 
         //timeGame.getPlayers().remove(player);
         timeGame.getSpecatePlayers().add(player);
-        setDefaultKit();
+        setDefaultKit(player);
         Bukkit.getOnlinePlayers().forEach(current -> {
             current.hidePlayer(timeGame, player);
         });

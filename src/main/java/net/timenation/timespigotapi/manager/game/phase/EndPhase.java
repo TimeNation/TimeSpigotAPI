@@ -17,19 +17,24 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
 
-    private TimeGame timeGame;
+    private final TimeGame timeGame;
+    private final String gameName;
     
-    public EndPhase(TimeGame timeGame) {
+    public EndPhase(TimeGame timeGame, String gameName) {
         this.timeGame = timeGame;
+        this.gameName = gameName;
     }
 
+    public abstract void onQuit(Player player);
     public abstract void stopCountdown();
     public abstract void startEndCountdown();
     
     @EventHandler
     public void handlePlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars"));
+        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName));
+
+        onQuit(player);
 
         if(timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
             Bukkit.getOnlinePlayers().forEach(current -> {
@@ -43,8 +48,8 @@ public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
             }
         } else {
             timeGame.getPlayers().remove(player);
-            TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").setDeaths(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").getDeaths() + 1);
-            TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").setLooses(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").getLooses() + 1);
+            TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).setDeaths(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).getDeaths() + 1);
+            TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).setLooses(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).getLooses() + 1);
             if(Bukkit.getOnlinePlayers().size() - 1 == 1 || timeGame.getPlayers().size() == 1) {
                 Bukkit.getOnlinePlayers().forEach(current -> {
                     int crystals = ThreadLocalRandom.current().nextInt(25, 50);
@@ -65,7 +70,7 @@ public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
                     winner.sendTitle(I18n.format(player, "game.title.win.top"), I18n.format(player, "game.title.win.bottom"));
                     winner.sendMessage(I18n.format(player, timeGame.getPrefix(), "game.messages.playerhaswongame", crystals));
                     TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(winner).setCrystals(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(winner).getCrystals() + crystals);
-                    TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").setWins(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars").getWins() + 1);
+                    TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).setWins(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName).getWins() + 1);
                 }
 
                 timeGame.setGameState(GameState.ENDING);

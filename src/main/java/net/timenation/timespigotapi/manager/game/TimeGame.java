@@ -1,5 +1,6 @@
 package net.timenation.timespigotapi.manager.game;
 
+import com.google.gson.JsonParser;
 import eu.thesimplecloud.api.CloudAPI;
 import lombok.Getter;
 import net.timenation.timespigotapi.TimeSpigotAPI;
@@ -8,12 +9,13 @@ import net.timenation.timespigotapi.manager.game.gamestates.GameState;
 import net.timenation.timespigotapi.manager.game.manager.ConfigManager;
 import net.timenation.timespigotapi.manager.game.scoreboard.ScoreboardManager;
 import net.timenation.timespigotapi.manager.game.team.TeamManager;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -102,12 +104,35 @@ public abstract class TimeGame extends JavaPlugin {
         this.world = world;
         CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName(CloudAPI.getInstance().getThisSidesName()).setMOTD(gameMap);
     }
-    public void setRandomGameMap() {
-        int i = ThreadLocalRandom.current().nextInt(0, Arrays.stream(new File("plugins/" + getGameName() + "/maps").listFiles()).toList().size());
-        List<File> maps = Arrays.stream(new File("plugins/" + getGameName() + "/maps").listFiles()).toList();
-        configManager = new ConfigManager(getGameName(), maps.get(i).getName());
+    public void setRandomGameMap(String gameName) {
+        int i = ThreadLocalRandom.current().nextInt(0, Arrays.stream(new File("plugins/" + gameName + "/maps").listFiles()).toList().size());
+        List<File> maps = Arrays.stream(new File("plugins/" + gameName + "/maps").listFiles()).toList();
+        configManager = new ConfigManager(gameName, maps.get(i).getName());
         setGameMap(configManager.getString("mapName"), configManager.getString("mapBuilder"), Bukkit.getWorld(configManager.getString("mapWorld")));
     }
+
+    public void loadMaps(String gameName) {
+        for (File file : new File("plugins/" + gameName + "/maps").listFiles()) {
+            try {
+                Bukkit.createWorld(new WorldCreator(new JsonParser().parse(new FileReader(file)).getAsJsonObject().get("mapWorld").getAsString()));
+            } catch (FileNotFoundException ignored) {}
+        }
+
+        setRandomGameMap(gameName);
+
+        for (World world : Bukkit.getWorlds()) {
+            world.setDifficulty(Difficulty.EASY);
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+            world.setGameRule(GameRule.KEEP_INVENTORY, false);
+            world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+            world.setGameRule(GameRule.DO_FIRE_TICK, false);
+            world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+            world.setGameRule(GameRule.RANDOM_TICK_SPEED, 0);
+            world.setTime(6000);
+            world.setStorm(false);
+        }
+    }
+
     public GameState setGameState(GameState gameState) {
         return this.gameState = gameState;
     }
