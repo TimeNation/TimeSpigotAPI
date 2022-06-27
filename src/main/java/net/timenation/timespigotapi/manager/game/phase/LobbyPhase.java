@@ -17,9 +17,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener {
 
     private final TimeGame timeGame;
+    private final String gameName;
 
-    public LobbyPhase(TimeGame timeGame) {
+    public LobbyPhase(TimeGame timeGame, String gameName) {
         this.timeGame = timeGame;
+        this.gameName = gameName;
     }
     
     /*
@@ -36,7 +38,7 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, "SkyWars");
+        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName);
 
         if(timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
             player.teleport(new Location(Bukkit.getWorld("world"), 111.5, 114.00, -262.5, -45, 0));

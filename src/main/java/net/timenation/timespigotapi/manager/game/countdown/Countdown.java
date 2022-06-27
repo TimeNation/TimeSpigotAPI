@@ -17,12 +17,14 @@ public abstract class Countdown<timeGame extends TimeGame> {
 
     public int countdown;
     public int tpcount;
+    public final String gameName;
     public BukkitTask bukkitTask;
     public TimeGame game;
 
-    public Countdown(TimeGame timeGame) {
+    public Countdown(TimeGame timeGame, String gameName) {
         this.countdown = 60;
         this.tpcount = 0;
+        this.gameName = gameName;
         this.game = timeGame;
     }
 
@@ -108,7 +110,7 @@ public abstract class Countdown<timeGame extends TimeGame> {
                     }
                     if(countdown == 0) {
                         player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown.stop", game.getSecoundColor(), countdown));
-                        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, game.getGameName()));
+                        TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName));
                         CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId()).sendToLobby();
                         Bukkit.shutdown();
                     }
