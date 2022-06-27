@@ -46,6 +46,7 @@ public abstract class TimeGame extends JavaPlugin {
     public abstract int getNeededPlayers();
     public abstract ConfigManager getConfigManager();
     public abstract TeamManager getTeamManager();
+    public abstract DefaultGameQuitItem getDefaultGameQuitItem();
     public String getGameMap() {
         return gameMap;
     }
