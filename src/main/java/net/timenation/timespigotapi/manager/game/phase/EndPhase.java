@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class EndPhase<timeGame extends TimeGame> implements Listener {
 
-    private final TimeGame timeGame;
+    public final TimeGame timeGame;
     private final String gameName;
     
     public EndPhase(TimeGame timeGame, String gameName) {

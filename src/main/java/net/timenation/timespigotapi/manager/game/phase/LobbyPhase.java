@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener {
 
-    private final TimeGame timeGame;
+    public final TimeGame timeGame;
     private final String gameName;
 
     public LobbyPhase(TimeGame timeGame, String gameName) {
