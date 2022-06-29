@@ -26,6 +26,7 @@ public final class TimeSpigotAPI extends JavaPlugin {
     private TimeStatsPlayerManager timeStatsPlayerManager;
     private TimeGameStatsManager timeGameStatsManager;
     private RankManager rankManager;
+    private ParticleManager particleManager;
     private ColorAPI colorAPI;
     private CloudManager cloudManager;
     private UUIDFetcher uuidFetcher;
@@ -44,13 +45,14 @@ public final class TimeSpigotAPI extends JavaPlugin {
         timePlayerManager = new TimePlayerManager();
         timeStatsPlayerManager = new TimeStatsPlayerManager();
         timeGameStatsManager = new TimeGameStatsManager();
+        particleManager = new ParticleManager();
+        requestManager = new RequestManager();
+        tablistManager = new TablistManager();
+        cloudManager = new CloudManager();
+        nickManager = new NickManager();
         rankManager = new RankManager();
         colorAPI = new ColorAPI();
-        cloudManager = new CloudManager();
         uuidFetcher = new UUIDFetcher();
-        requestManager = new RequestManager();
-        nickManager = new NickManager();
-        tablistManager = new TablistManager();
         components = new Components();
 
         PluginManager pluginManager = Bukkit.getPluginManager();

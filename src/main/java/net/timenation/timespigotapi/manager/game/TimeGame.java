@@ -57,7 +57,7 @@ public abstract class TimeGame extends JavaPlugin {
         return world;
     }
     public String getPrefix() {
-        return TimeSpigotAPI.getInstance().getColorAPI().process(prefix + secoundColor + "» §7");
+        return TimeSpigotAPI.getInstance().getColorAPI().process(prefix + secoundColor + " » §7");
     }
     public String getColor() {
         return TimeSpigotAPI.getInstance().getColorAPI().process(color);
