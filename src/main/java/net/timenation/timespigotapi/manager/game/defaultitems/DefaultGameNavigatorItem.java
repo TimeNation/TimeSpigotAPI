@@ -31,12 +31,12 @@ public class DefaultGameNavigatorItem implements Listener {
     }
 
     public void setItem(Player player) {
-        player.getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(player, "game.item.navigator", game.getPrefix())).build());
+        player.getInventory().setItem(slot, new ItemManager(Material.ECHO_SHARD, 1).setDisplayName(I18n.format(player, "game.item.top3", game.getPrefix())).build());
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.COMPASS, 1).setDisplayName(I18n.format(event.getPlayer(),"game.item.navigator", game.getPrefix())).build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.ECHO_SHARD, 1).setDisplayName(I18n.format(event.getPlayer(),"game.item.top3", game.getPrefix())).build());
     }
 
     @EventHandler
@@ -48,46 +48,10 @@ public class DefaultGameNavigatorItem implements Listener {
         }
 
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.COMPASS) && !game.getGameState().equals(GameState.INGAME)) {
-                Inventory inventory = Bukkit.createInventory(null, 9*5, I18n.format(player, "game.item.navigator.inventory.title", game.getPrefix()));
-                ItemStack blackGlass = new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build();
-
-                for (int i = 0; i < 9; i++) {
-                    inventory.setItem(i, blackGlass);
-                }
-
-                for (int i = 36; i < 45; i++) {
-                    inventory.setItem(i, blackGlass);
-                }
-
-                inventory.setItem(18, blackGlass);
-                inventory.setItem(26, blackGlass);
-                inventory.setItem(38, blackGlass);
-                inventory.setItem(42, blackGlass);
-
-                inventory.setItem(9, blackGlass);
-                inventory.setItem(17, blackGlass);
-                inventory.setItem(27, blackGlass);
-                inventory.setItem(35, blackGlass);
-
-                inventory.setItem(20, new ItemManager(Material.SLIME_BLOCK, 1).setDisplayName(I18n.format(player, "game.item.navigator.inventory.item.trampoline", game.getPrefix())).build());
-                inventory.setItem(24, new ItemManager(Material.BARRIER, 1).setDisplayName(I18n.format(player, "game.item.navigator.inventory.item.soon", game.getPrefix())).build());
-
-                player.openInventory(inventory);
-            }
-        }
-    }
-
-    @EventHandler
-    public void handleInventoryClick(InventoryClickEvent event) {
-        Player player = (Player) event.getWhoClicked();
-
-        if(event.getCurrentItem() == null || event.getCurrentItem().getType() == null || event.getCurrentItem().getItemMeta() == null || event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
-
-        if(event.getView().getTitle().equals(I18n.format(player, "game.item.navigator.inventory.title", game.getPrefix()))) {
-            if (event.getCurrentItem().getType() == Material.SLIME_BLOCK) {
-                player.teleport(new Location(Bukkit.getWorld("world"), 138.5, 109, -237.5, -27, 0));
-                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1, 0);
+            if(event.getItem().getType().equals(Material.ECHO_SHARD) && !game.getGameState().equals(GameState.INGAME)) {
+                player.sendMessage(I18n.format(player, "game.title.teleport.bottom", game.getPrefix()));
+                player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_HURT, 10, 2);
+                player.teleport(new Location(Bukkit.getWorld("world"), 97.5, 107, -237.5, 45, -8));
             }
         }
     }
