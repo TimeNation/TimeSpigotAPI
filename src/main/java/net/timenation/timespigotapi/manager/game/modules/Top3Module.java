@@ -62,6 +62,6 @@ public class Top3Module {
                     }
                 }
             }
-        }, 30);
+        }, 50);
     }
 }
