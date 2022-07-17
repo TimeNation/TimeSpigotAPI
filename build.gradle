@@ -4,15 +4,23 @@ plugins {
 }
 
 group = 'net.timenation'
-version = '2.0-SNAPSHOT'
+version = '3.0-SNAPSHOT'
 compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
-    maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
-    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
-    maven { url = "https://repo.codemc.io/repository/nms/" }
-    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+    maven {
+        url = "https://repo.codemc.io/repository/nms/"
+    }
+    maven {
+        url "https://repo.dmulloy2.net/repository/public/"
+    }
     maven { url "https://repo.thesimplecloud.eu/artifactory/gradle-release-local/" }
 }
 
@@ -21,10 +29,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     compileOnly 'io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT'
     compileOnly 'com.mojang:authlib:1.11'
-    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.8.0"
-    compileOnly group: 'eu.thesimplecloud.simplecloud', name: 'simplecloud-api', version: "2.3.0"
-    compileOnly group: 'eu.thesimplecloud.simplecloud', name: 'simplecloud-module-permission', version: "2.3.0"
-    compileOnly fileTree(dir: 'libs', include: '*.jar')
+    compileOnly 'com.comphenix.protocol:ProtocolLib:4.8.0'
+    compileOnly 'eu.thesimplecloud.simplecloud:simplecloud-api:2.3.0'
+    compileOnly 'eu.thesimplecloud.simplecloud:simplecloud-module-permission:2.3.0'
 
     implementation 'com.google.code.gson:gson:2.9.0'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
