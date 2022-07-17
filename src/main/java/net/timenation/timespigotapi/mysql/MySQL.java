@@ -18,10 +18,10 @@ public class MySQL {
     private final ExecutorService executorService;
 
     public MySQL(String database) {
-        this.host = "127.0.0.1";
+        this.host = TimeSpigotAPI.getInstance().getTimeConfig().getCredentials().getHost();
         this.port = 3306;
-        this.user = "user";
-        this.password = "w5vffZjUzJnlTXaWIGKcCeblkmjaKU";
+        this.user = TimeSpigotAPI.getInstance().getTimeConfig().getCredentials().getUser();
+        this.password = TimeSpigotAPI.getInstance().getTimeConfig().getCredentials().getPassword();
         this.database = database;
         this.executorService = Executors.newCachedThreadPool();
 

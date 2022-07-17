@@ -9,6 +9,7 @@ compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven {
         url = "https://oss.sonatype.org/content/repositories/snapshots/"
     }
@@ -21,7 +22,12 @@ repositories {
     maven {
         url "https://repo.dmulloy2.net/repository/public/"
     }
-    maven { url "https://repo.thesimplecloud.eu/artifactory/gradle-release-local/" }
+    maven {
+        url "https://repo.thesimplecloud.eu/artifactory/gradle-release-local/"
+    }
+    maven {
+        url 'https://jitpack.io'
+    }
 }
 
 dependencies {
@@ -32,6 +38,7 @@ dependencies {
     compileOnly 'com.comphenix.protocol:ProtocolLib:4.8.0'
     compileOnly 'eu.thesimplecloud.simplecloud:simplecloud-api:2.3.0'
     compileOnly 'eu.thesimplecloud.simplecloud:simplecloud-module-permission:2.3.0'
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
 
     implementation 'com.google.code.gson:gson:2.9.0'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'

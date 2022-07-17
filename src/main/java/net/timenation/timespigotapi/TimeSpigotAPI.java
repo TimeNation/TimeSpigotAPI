@@ -1,6 +1,9 @@
 package net.timenation.timespigotapi;
 
+import com.google.gson.Gson;
 import lombok.Getter;
+import net.timenation.timespigotapi.config.MySQLConfigObject;
+import net.timenation.timespigotapi.config.TimeConfig;
 import net.timenation.timespigotapi.data.Components;
 import net.timenation.timespigotapi.data.Logger;
 import net.timenation.timespigotapi.data.UUIDFetcher;
@@ -16,6 +19,9 @@ import net.timenation.timespigotapi.mysql.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.util.logging.Level;
 
 @Getter
 public final class TimeSpigotAPI extends JavaPlugin {
@@ -36,12 +42,17 @@ public final class TimeSpigotAPI extends JavaPlugin {
     private TablistManager tablistManager;
     private Components components;
 
+    private TimeConfig timeConfig;
+
+
     @Override
     public void onEnable() {
         instance = this;
+        TimeSpigotAPI.getInstance().getLogger().log(Level.ALL, new Gson().toJson(new MySQLConfigObject("admin", "test", "timenation", "127.0.0.1")));
 
+        timeConfig = TimeConfig.loadConfig(new File(getDataFolder() + "/config.json"));
         timeLogger = new Logger();
-        mySQL = new MySQL("Storage");
+        mySQL = new MySQL("timenation");
         timePlayerManager = new TimePlayerManager();
         timeStatsPlayerManager = new TimeStatsPlayerManager();
         timeGameStatsManager = new TimeGameStatsManager();
@@ -54,6 +65,7 @@ public final class TimeSpigotAPI extends JavaPlugin {
         colorAPI = new ColorAPI();
         uuidFetcher = new UUIDFetcher();
         components = new Components();
+
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(), this);
