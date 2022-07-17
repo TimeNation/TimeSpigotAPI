@@ -48,7 +48,7 @@ public final class TimeSpigotAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        TimeSpigotAPI.getInstance().getLogger().log(Level.ALL, new Gson().toJson(new MySQLConfigObject("admin", "test", "timenation", "127.0.0.1")));
+
 
         timeConfig = TimeConfig.loadConfig(new File(getDataFolder() + "/config.json"));
         timeLogger = new Logger();
@@ -58,7 +58,7 @@ public final class TimeSpigotAPI extends JavaPlugin {
         timeGameStatsManager = new TimeGameStatsManager();
         particleManager = new ParticleManager();
         requestManager = new RequestManager();
-        tablistManager = new TablistManager();
+        //tablistManager = new TablistManager();
         cloudManager = new CloudManager();
         nickManager = new NickManager();
         rankManager = new RankManager();

@@ -2,7 +2,7 @@ name: TimeSpigotAPI
 version: '${version}'
 main: net.timenation.timespigotapi.TimeSpigotAPI
 api-version: 1.19
-author: ByRaudy
+author: ByRaudy & Contributors
 
 depend:
   - ProtocolLib
