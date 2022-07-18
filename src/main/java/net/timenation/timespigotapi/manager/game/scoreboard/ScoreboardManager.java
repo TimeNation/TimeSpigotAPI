@@ -53,7 +53,7 @@ public class ScoreboardManager {
         scoreboardBuilder.setLine(2, I18n.format(player, "game.scoreboard.players"));
         scoreboardBuilder.setLine(3, "  §8● " + game.getColor() + Bukkit.getOnlinePlayers().size() + "§8/" + game.getColor() + Bukkit.getMaxPlayers() + game.getSecoundColor() + " ☺");
         scoreboardBuilder.setLine(4, "§2");
-        scoreboardBuilder.setLine(5,  I18n.format(player, "game.scoreboard.kit", (Object) game.getSecoundColor()));
+        scoreboardBuilder.setLine(5, I18n.format(player, "game.scoreboard.kit", (Object) game.getSecoundColor()));
         scoreboardBuilder.setLine(6, "  §8● " + game.getColor() + kitName);
         scoreboardBuilder.setLine(7, "§3");
         scoreboardBuilder.setLine(8, I18n.format(player, "game.scoreboard.map", (Object) game.getSecoundColor()));

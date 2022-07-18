@@ -1,6 +1,5 @@
 package net.timenation.timespigotapi.manager.game.modules;
 
-import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.ItemManager;
 import net.timenation.timespigotapi.manager.game.TimeGame;
 import net.timenation.timespigotapi.manager.game.manager.ConfigManager;
@@ -15,7 +14,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.util.Locale;
 
 public class ForcemapModule implements Listener {
 
@@ -27,13 +25,13 @@ public class ForcemapModule implements Listener {
         this.timeGame = timeGame;
         this.blackGlass = new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build();
         this.gameName = gameName;
-        
+
         Bukkit.getPluginManager().registerEvents(this, timeGame);
     }
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        if(event.getPlayer().hasPermission("timenation.forcemap")) {
+        if (event.getPlayer().hasPermission("timenation.forcemap")) {
             event.getPlayer().getInventory().setItem(22, new ItemManager(timeGame.getCountdown() > 10 ? Material.FLOWER_BANNER_PATTERN : Material.BARRIER, 1).setDisplayName(I18n.format(event.getPlayer(), "game.item.forcemap", timeGame.getPrefix())).build());
         }
     }

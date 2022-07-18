@@ -15,11 +15,13 @@ import org.jetbrains.annotations.NotNull;
 public abstract class CommandUnnick<timeGame extends TimeGame> implements CommandExecutor {
 
     private final TimeGame timeGame;
+
     public CommandUnnick(TimeGame timeGame) {
         this.timeGame = timeGame;
 
         Bukkit.createWorld(new WorldCreator("NICK"));
     }
+
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!(commandSender instanceof Player player)) return false;

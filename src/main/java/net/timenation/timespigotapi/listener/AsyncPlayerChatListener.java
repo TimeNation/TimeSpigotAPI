@@ -9,7 +9,7 @@ public class AsyncPlayerChatListener implements Listener {
 
     @EventHandler
     public void handleAsyncPlayerChat(AsyncPlayerChatEvent event) {
-        if(event.getPlayer().hasPermission("timenation.chat.color")) {
+        if (event.getPlayer().hasPermission("timenation.chat.color")) {
             event.setMessage(event.getMessage().replace("&", "§"));
         }
 

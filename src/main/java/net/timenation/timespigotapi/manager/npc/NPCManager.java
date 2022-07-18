@@ -8,7 +8,9 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.language.I18n;
 import net.timenation.timespigotapi.manager.npc.event.PlayerNPCShowEvent;
-import net.timenation.timespigotapi.manager.npc.modifier.*;
+import net.timenation.timespigotapi.manager.npc.modifier.AnimationModifier;
+import net.timenation.timespigotapi.manager.npc.modifier.LabyModModifier;
+import net.timenation.timespigotapi.manager.npc.modifier.MetadataModifier;
 import net.timenation.timespigotapi.manager.npc.profile.Profile;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -63,7 +65,8 @@ public class NPCManager implements Listener {
 
         Bukkit.getScheduler().runTaskTimer(TimeSpigotAPI.getInstance(), () -> {
             Bukkit.getOnlinePlayers().forEach(player -> {
-                if(playerTitle) armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "npc.totalplayers", cloudServiceGroup.getOnlinePlayerCount())));
+                if (playerTitle)
+                    armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "npc.totalplayers", cloudServiceGroup.getOnlinePlayerCount())));
                 else armorStand.setCustomName(Component.nullToEmpty(I18n.format(player, "npc.rightclick")));
 
                 ((CraftPlayer) player).getHandle().connection.connection.send(new ClientboundAddEntityPacket(armorStand, armorStand.getId()));

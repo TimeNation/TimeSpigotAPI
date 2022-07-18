@@ -18,7 +18,8 @@ public class I18n {
             translateKey = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).getLanguage().equals("de") ? languageDE.getString(translateKey) : languageEN.getString(translateKey);
             MessageFormat messageFormat = new MessageFormat(translateKey);
             return TimeSpigotAPI.getInstance().getColorAPI().process(messageFormat.format(arguments));
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+        }
         return translateKey;
     }
 
@@ -26,7 +27,8 @@ public class I18n {
         try {
             translateKey = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).getLanguage().equals("de") ? languageDE.getString(translateKey) : languageEN.getString(translateKey);
             return TimeSpigotAPI.getInstance().getColorAPI().process(formatLines(translateKey, arguments));
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+        }
         return Collections.singletonList(translateKey);
     }
 
@@ -38,7 +40,8 @@ public class I18n {
         try {
             MessageFormat messageFormat = new MessageFormat(translateKey);
             return TimeSpigotAPI.getInstance().getColorAPI().process(messageFormat.format(arguments));
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+        }
         return translateKey;
     }
 
@@ -47,7 +50,8 @@ public class I18n {
             translateKey = prefix + (TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).getLanguage().equals("de") ? languageDE.getString(translateKey) : languageEN.getString(translateKey));
             MessageFormat messageFormat = new MessageFormat(translateKey);
             return TimeSpigotAPI.getInstance().getColorAPI().process(messageFormat.format(arguments));
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+        }
         return translateKey;
     }
 
@@ -55,7 +59,8 @@ public class I18n {
         try {
             translateKey = prefix + (TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).getLanguage().equals("de") ? languageDE.getString(translateKey) : languageEN.getString(translateKey));
             return TimeSpigotAPI.getInstance().getColorAPI().process(translateKey);
-        } catch (NullPointerException ignored) { }
+        } catch (NullPointerException ignored) {
+        }
         return translateKey;
     }
 }

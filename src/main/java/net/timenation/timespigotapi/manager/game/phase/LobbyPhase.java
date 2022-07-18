@@ -23,28 +23,31 @@ public abstract class LobbyPhase<timeGame extends TimeGame> implements Listener 
         this.timeGame = timeGame;
         this.gameName = gameName;
     }
-    
+
     /*
     If game is not a Kit game, let this methode empty
      */
     public abstract void setKitStuff(Player player);
+
     /*
     If game is not a Kit game, let this methode empty
      */
     public abstract void setDefaultKit(Player player);
+
     public abstract void startCountdown();
+
     public abstract void updateScoreboard(Player player);
-    
+
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName);
 
-        if(timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
+        if (timeGame.getGameState().equals(GameState.LOBBY) || timeGame.getGameState().equals(GameState.STARTING)) {
             player.teleport(new Location(Bukkit.getWorld("world"), 111.5, 114.00, -262.5, -45, 0));
             setKitStuff(player);
 
-            if(Bukkit.getOnlinePlayers().size() == timeGame.getNeededPlayers()) startCountdown();
+            if (Bukkit.getOnlinePlayers().size() == timeGame.getNeededPlayers()) startCountdown();
 
             Bukkit.getOnlinePlayers().forEach(current -> {
                 current.sendMessage(I18n.format(current, timeGame.getPrefix(), "game.messages.join", TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersRankAndName(player.getUniqueId()), Bukkit.getOnlinePlayers().size(), Bukkit.getMaxPlayers()));

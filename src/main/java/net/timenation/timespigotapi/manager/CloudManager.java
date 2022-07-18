@@ -35,12 +35,12 @@ public class CloudManager {
         CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName(cloudServer).shutdown();
     }
 
-    public String getOnlineTimeinDays(ICloudPlayer iCloudPlayer)  {
+    public String getOnlineTimeinDays(ICloudPlayer iCloudPlayer) {
         long ms = iCloudPlayer.getOnlineTime();
         return String.format("%d", TimeUnit.MILLISECONDS.toDays(ms));
     }
 
-    public String getOnlineTimeinHour(ICloudPlayer iCloudPlayer)  {
+    public String getOnlineTimeinHour(ICloudPlayer iCloudPlayer) {
         long ms = iCloudPlayer.getOnlineTime();
         return String.format("%d", TimeUnit.MILLISECONDS.toHours(ms));
     }

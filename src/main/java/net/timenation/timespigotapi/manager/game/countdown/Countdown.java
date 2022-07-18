@@ -29,8 +29,11 @@ public abstract class Countdown<timeGame extends TimeGame> {
     }
 
     public abstract void at0();
+
     public abstract void before0();
+
     public abstract void at10();
+
     public abstract void atEnd();
 
     public void startCountdown() {
@@ -48,7 +51,8 @@ public abstract class Countdown<timeGame extends TimeGame> {
                     case 10 -> {
                         at10();
                         Bukkit.getOnlinePlayers().forEach(player -> {
-                            if(player.hasPermission("timenation.forcemap")) player.getInventory().getItem(22).setType(Material.BARRIER);
+                            if (player.hasPermission("timenation.forcemap"))
+                                player.getInventory().getItem(22).setType(Material.BARRIER);
                             player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown", game.getSecoundColor(), countdown));
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
                         });
@@ -84,7 +88,7 @@ public abstract class Countdown<timeGame extends TimeGame> {
                         game.getScoreboardManager().updateLobbyScoreboard(player, countdown);
                     }
 
-                    if(countdown < 0) {
+                    if (countdown < 0) {
                         cancel();
                     }
                 });
@@ -101,14 +105,14 @@ public abstract class Countdown<timeGame extends TimeGame> {
         bukkitTask = new BukkitRunnable() {
             @Override
             public void run() {
-                for(Player player : Bukkit.getOnlinePlayers()) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
                     player.showPlayer(player);
                     game.getSpecatePlayers().remove(player);
 
-                    if(countdown != 0) {
+                    if (countdown != 0) {
                         player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown.stop", game.getSecoundColor(), countdown));
                     }
-                    if(countdown == 0) {
+                    if (countdown == 0) {
                         player.sendMessage(I18n.format(player, game.getPrefix(), "game.messages.countdown.stop", game.getSecoundColor(), countdown));
                         TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().updateTimeStatsPlayer(TimeSpigotAPI.getInstance().getTimeStatsPlayerManager().getTimeStatsPlayer(player, gameName));
                         CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId()).sendToLobby();

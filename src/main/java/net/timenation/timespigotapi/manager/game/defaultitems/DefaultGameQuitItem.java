@@ -38,12 +38,12 @@ public class DefaultGameQuitItem implements Listener {
     @EventHandler
     public void handlePlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if(event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
+        if (event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
 
-        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.PLAYER_HEAD) && !game.getGameState().equals(GameState.INGAME)) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (event.getItem().getType().equals(Material.PLAYER_HEAD) && !game.getGameState().equals(GameState.INGAME)) {
                 CloudAPI.getInstance().getCloudPlayerManager().connectPlayer(CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId()), CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName("Lobby-1"));
                 player.sendMessage(I18n.format(player, "game.messages.quit.player", game.getPrefix()));
             }

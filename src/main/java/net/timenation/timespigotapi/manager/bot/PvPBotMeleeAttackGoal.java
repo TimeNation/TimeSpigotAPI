@@ -66,7 +66,7 @@ public class PvPBotMeleeAttackGoal extends Goal {
         } else if (!this.mob.isWithinRestriction(livingEntity.blockPosition())) {
             return false;
         } else {
-            return !(livingEntity instanceof Player) || !livingEntity.isSpectator() && !((Player)livingEntity).isCreative();
+            return !(livingEntity instanceof Player) || !livingEntity.isSpectator() && !((Player) livingEntity).isCreative();
         }
     }
 
@@ -82,7 +82,7 @@ public class PvPBotMeleeAttackGoal extends Goal {
     public void stop() {
         LivingEntity livingEntity = this.mob.getTarget();
         if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
-            this.mob.setTarget((LivingEntity)null);
+            this.mob.setTarget((LivingEntity) null);
         }
 
         this.mob.setAggressive(false);
@@ -142,6 +142,6 @@ public class PvPBotMeleeAttackGoal extends Goal {
     }
 
     protected double getAttackReachSqr(LivingEntity entity) {
-        return (double)(this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + entity.getBbWidth());
+        return (double) (this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + entity.getBbWidth());
     }
 }

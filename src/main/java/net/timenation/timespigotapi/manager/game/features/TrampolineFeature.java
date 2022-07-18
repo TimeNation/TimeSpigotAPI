@@ -26,8 +26,8 @@ public class TrampolineFeature implements Listener {
         Player player = event.getPlayer();
         Block block = player.getLocation().subtract(0, 1, 0).getBlock();
 
-        if(!game.getGameState().equals(GameState.INGAME)) {
-            if(block.getType().equals(Material.SLIME_BLOCK)) {
+        if (!game.getGameState().equals(GameState.INGAME)) {
+            if (block.getType().equals(Material.SLIME_BLOCK)) {
                 player.setVelocity(new Vector(0, 1.5, 0));
             }
         }

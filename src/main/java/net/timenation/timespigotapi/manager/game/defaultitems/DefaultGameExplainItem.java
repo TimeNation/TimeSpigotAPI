@@ -41,12 +41,12 @@ public class DefaultGameExplainItem implements Listener {
     @EventHandler
     public void handlePlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if(event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
+        if (event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
 
-        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.BOOK) && !game.getGameState().equals(GameState.INGAME)) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (event.getItem().getType().equals(Material.BOOK) && !game.getGameState().equals(GameState.INGAME)) {
                 player.sendMessage(" ");
                 player.sendMessage(I18n.format(player, TimeSpigotAPI.getInstance().getColorAPI().process(translateKey)));
                 player.sendMessage(" ");

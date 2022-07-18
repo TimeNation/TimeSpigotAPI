@@ -23,7 +23,8 @@ public class BotListener implements Listener {
 
     @EventHandler
     public void handleEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if(event.getCause().equals(EntityDamageEvent.DamageCause.MAGIC) && event.getEntity().hasMetadata("pvpBot")) event.setCancelled(true);
+        if (event.getCause().equals(EntityDamageEvent.DamageCause.MAGIC) && event.getEntity().hasMetadata("pvpBot"))
+            event.setCancelled(true);
 
         if (event.getEntity().hasMetadata("pvpBot") && soup) {
             CraftZombie craftZombie = (CraftZombie) event.getEntity();

@@ -20,8 +20,8 @@ public class NickModule implements Listener {
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        if(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(event.getPlayer()).isNickTool()) {
-            if(!CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName(CloudAPI.getInstance().getThisSidesName()).isLobby()) {
+        if (TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(event.getPlayer()).isNickTool()) {
+            if (!CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName(CloudAPI.getInstance().getThisSidesName()).isLobby()) {
                 TimeSpigotAPI.getInstance().getNickManager().nickPlayer(event.getPlayer());
             }
         }

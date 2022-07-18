@@ -2,7 +2,6 @@ package net.timenation.timespigotapi.manager.game;
 
 import com.google.gson.JsonParser;
 import eu.thesimplecloud.api.CloudAPI;
-import lombok.Getter;
 import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.game.defaultitems.DefaultGameQuitItem;
 import net.timenation.timespigotapi.manager.game.gamestates.GameState;
@@ -41,70 +40,98 @@ public abstract class TimeGame extends JavaPlugin {
     private ScoreboardManager scoreboardManager;
 
     public abstract ArrayList<Player> getPlayers();
+
     public abstract ArrayList<Player> getSpecatePlayers();
+
     public abstract GameState getGameState();
+
     public abstract int getNeededPlayers();
+
     public abstract ConfigManager getConfigManager();
+
     public abstract TeamManager getTeamManager();
+
     public abstract DefaultGameQuitItem getDefaultGameQuitItem();
+
     public String getGameMap() {
         return gameMap;
     }
+
     public String getBuilder() {
         return builder;
     }
+
     public World getWorld() {
         return world;
     }
+
     public String getPrefix() {
         return TimeSpigotAPI.getInstance().getColorAPI().process(prefix + secoundColor + " » §7");
     }
+
     public String getColor() {
         return TimeSpigotAPI.getInstance().getColorAPI().process(color);
     }
+
     public String getSecoundColor() {
         return TimeSpigotAPI.getInstance().getColorAPI().process(secoundColor);
     }
-    public String getGameName() {return prefix;}
+
+    public String getGameName() {
+        return prefix;
+    }
+
     public HashMap<Player, String> getPlayerKit() {
         return playerKit;
     }
+
     public ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
     }
+
     public int getCountdown() {
         return countdown;
     }
+
     public boolean isGameWithKits() {
         return gameWithKits;
     }
+
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
+
     public void setColor(String color) {
         this.color = color;
     }
+
     public void setSecoundColor(String secoundColor) {
         this.secoundColor = secoundColor;
     }
+
     public void setScoreboardManager(ScoreboardManager scoreboardManager) {
         this.scoreboardManager = scoreboardManager;
     }
+
     public void setDefaultGameQuitItem(DefaultGameQuitItem defaultGameQuitItem) {
         this.defaultGameQuitItem = defaultGameQuitItem;
     }
+
     public void setCountdown(int countdown) {
         this.countdown = countdown;
     }
+
     public void setGameWithKits(boolean gameWithKits) {
         this.gameWithKits = gameWithKits;
     }
+
     public void setGameMap(String gameMap, String builder, World world) {
         this.gameMap = getColor() + gameMap;
         this.builder = getColor() + builder;
         this.world = world;
         CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName(CloudAPI.getInstance().getThisSidesName()).setMOTD(gameMap);
     }
+
     public void setRandomGameMap(String gameName) {
         int i = ThreadLocalRandom.current().nextInt(0, Arrays.stream(new File("plugins/" + gameName + "/maps").listFiles()).toList().size());
         List<File> maps = Arrays.stream(new File("plugins/" + gameName + "/maps").listFiles()).toList();
@@ -116,7 +143,8 @@ public abstract class TimeGame extends JavaPlugin {
         for (File file : new File("plugins/" + gameName + "/maps").listFiles()) {
             try {
                 Bukkit.createWorld(new WorldCreator(new JsonParser().parse(new FileReader(file)).getAsJsonObject().get("mapWorld").getAsString()));
-            } catch (FileNotFoundException ignored) {}
+            } catch (FileNotFoundException ignored) {
+            }
         }
 
         setRandomGameMap(gameName);

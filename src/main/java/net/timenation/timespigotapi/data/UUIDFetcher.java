@@ -86,9 +86,9 @@ public class UUIDFetcher {
     }
 
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	private HashMap<UUID, String> nameCache = new HashMap();
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-	private HashMap<String, UUID> uuidCache = new HashMap();
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private HashMap<UUID, String> nameCache = new HashMap();
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private HashMap<String, UUID> uuidCache = new HashMap();
     private Gson gson = (new GsonBuilder()).create();
 }

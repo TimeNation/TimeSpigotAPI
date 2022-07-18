@@ -1,8 +1,6 @@
 package net.timenation.timespigotapi;
 
-import com.google.gson.Gson;
 import lombok.Getter;
-import net.timenation.timespigotapi.config.MySQLConfigObject;
 import net.timenation.timespigotapi.config.TimeConfig;
 import net.timenation.timespigotapi.data.Components;
 import net.timenation.timespigotapi.data.Logger;
@@ -21,7 +19,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.logging.Level;
 
 @Getter
 public final class TimeSpigotAPI extends JavaPlugin {
@@ -58,7 +55,7 @@ public final class TimeSpigotAPI extends JavaPlugin {
         timeGameStatsManager = new TimeGameStatsManager();
         particleManager = new ParticleManager();
         requestManager = new RequestManager();
-        //tablistManager = new TablistManager();
+        tablistManager = new TablistManager();
         cloudManager = new CloudManager();
         nickManager = new NickManager();
         rankManager = new RankManager();

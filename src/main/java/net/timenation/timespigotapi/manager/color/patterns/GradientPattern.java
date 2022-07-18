@@ -1,7 +1,6 @@
 package net.timenation.timespigotapi.manager.color.patterns;
 
 import net.timenation.timespigotapi.TimeSpigotAPI;
-import net.timenation.timespigotapi.manager.color.ColorAPI;
 
 import java.awt.*;
 import java.util.regex.Matcher;

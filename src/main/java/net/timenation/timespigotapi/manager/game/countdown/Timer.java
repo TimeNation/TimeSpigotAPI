@@ -22,7 +22,7 @@ public class Timer {
         this.time = time;
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(game, () -> {
-            if(game.getGameState().equals(GameState.INGAME)) {
+            if (game.getGameState().equals(GameState.INGAME)) {
                 Bukkit.getOnlinePlayers().forEach(player -> {
                     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(I18n.format(player, game.getPrefix(), "game.actionbar.ingame", getTimeInFormatWithoutHours(this.time), game.getGameMap())));
                 });

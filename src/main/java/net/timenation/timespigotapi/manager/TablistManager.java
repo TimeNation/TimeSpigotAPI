@@ -6,7 +6,6 @@ import com.google.gson.JsonParser;
 import eu.thesimplecloud.module.permission.PermissionPool;
 import eu.thesimplecloud.module.permission.player.IPermissionPlayer;
 import net.timenation.timespigotapi.TimeSpigotAPI;
-import net.timenation.timespigotapi.manager.color.ColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -39,7 +38,7 @@ public class TablistManager {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         Team team = scoreboard.getTeam(teamName);
 
-        if(team == null) {
+        if (team == null) {
             team = scoreboard.registerNewTeam(teamName);
         }
 
@@ -53,7 +52,7 @@ public class TablistManager {
     public void setPlayersPrefix(Player player) {
         IPermissionPlayer iPermissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
 
-        if(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).isNicked()) {
+        if (TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player).isNicked()) {
             try {
                 JsonObject jsonObject = new JsonParser().parse(new FileReader(new File("ranks/default.json"))).getAsJsonObject();
                 registerRankTeam(player, TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("rankPrefix").getAsString()), "", ChatColor.valueOf(jsonObject.get("rankChatColor").getAsString()), jsonObject.get("rankPropety").getAsInt());
@@ -70,13 +69,13 @@ public class TablistManager {
 
         for (File file : this.rankFiles) {
             if (file.isDirectory()) continue;
-            if(!file.getName().endsWith(".json")) continue;
+            if (!file.getName().endsWith(".json")) continue;
 
-            if(file.getName().equalsIgnoreCase(iPermissionPlayer.getHighestPermissionGroup().getName() + ".json")) {
+            if (file.getName().equalsIgnoreCase(iPermissionPlayer.getHighestPermissionGroup().getName() + ".json")) {
                 try {
                     JsonObject jsonObject = new JsonParser().parse(new FileReader(file)).getAsJsonObject();
                     registerRankTeam(player, TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("rankPrefix").getAsString()), "", ChatColor.valueOf(jsonObject.get("rankChatColor").getAsString()), jsonObject.get("rankPropety").getAsInt());
-                    if(jsonObject.get("hex").getAsBoolean()) {
+                    if (jsonObject.get("hex").getAsBoolean()) {
                         player.setPlayerListName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("hexStart").getAsString() + player.getName() + jsonObject.get("hexEnd").getAsString()));
                         player.setDisplayName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("hexStart").getAsString() + player.getName() + jsonObject.get("hexEnd").getAsString()));
                         player.setCustomName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("hexStart").getAsString() + player.getName() + jsonObject.get("hexEnd").getAsString()));
@@ -85,7 +84,8 @@ public class TablistManager {
                         player.setPlayerListName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + player.getName());
                         player.setDisplayName(TimeSpigotAPI.getInstance().getColorAPI().process(jsonObject.get("tabPrefix").getAsString()) + player.getName());
                     }
-                } catch (FileNotFoundException ignored) { }
+                } catch (FileNotFoundException ignored) {
+                }
             }
         }
     }

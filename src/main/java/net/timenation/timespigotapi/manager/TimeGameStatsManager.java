@@ -1,10 +1,7 @@
 package net.timenation.timespigotapi.manager;
 
-import com.google.gson.JsonObject;
 import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.game.TimeGameStats;
-import net.timenation.timespigotapi.player.TimePlayer;
-import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

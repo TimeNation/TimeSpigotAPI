@@ -18,7 +18,7 @@ public class TeamManager {
     }
 
     public void addPlayerToTeam(Player player, Team team) {
-        if(getTeamFromPlayer(player) != null) removePlayerFromTeam(player, this.playerTeamList.get(player));
+        if (getTeamFromPlayer(player) != null) removePlayerFromTeam(player, this.playerTeamList.get(player));
         this.playerTeamList.put(player, team);
         team.getPlayers().add(player);
     }

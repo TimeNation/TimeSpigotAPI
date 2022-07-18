@@ -33,7 +33,7 @@ public class RequestManager {
 
     @SneakyThrows
     public void sendHttpRequestPut(UUID uuid, String username, int crystals, int lootboxes, String helmet, String gadget, String language) {
-        String urlParameters = "key=nmOGpnvkCrrIug8Hxdvot9VI2Jrfwz4ASI9O9zNQjIRihQwTqF&type=update_player&uuid="+ uuid + "&name=" + username + "&crystals=" + crystals + "&lootboxes=" + lootboxes + "&helmet=" + helmet + "&gadget=" + gadget + "&language=" + language;
+        String urlParameters = "key=nmOGpnvkCrrIug8Hxdvot9VI2Jrfwz4ASI9O9zNQjIRihQwTqF&type=update_player&uuid=" + uuid + "&name=" + username + "&crystals=" + crystals + "&lootboxes=" + lootboxes + "&helmet=" + helmet + "&gadget=" + gadget + "&language=" + language;
         System.out.println(urlParameters);
 
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("http://localhost:8080/player?" + urlParameters).openConnection();

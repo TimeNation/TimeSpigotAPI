@@ -12,11 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 public class DefaultGameNavigatorItem implements Listener {
 
@@ -36,19 +33,19 @@ public class DefaultGameNavigatorItem implements Listener {
 
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.ECHO_SHARD, 1).setDisplayName(I18n.format(event.getPlayer(),"game.item.top3", game.getPrefix())).build());
+        event.getPlayer().getInventory().setItem(slot, new ItemManager(Material.ECHO_SHARD, 1).setDisplayName(I18n.format(event.getPlayer(), "game.item.top3", game.getPrefix())).build());
     }
 
     @EventHandler
     public void handlePlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if(event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
+        if (event.getItem() == null || event.getItem().getItemMeta() == null || event.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
 
-        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if(event.getItem().getType().equals(Material.ECHO_SHARD) && !game.getGameState().equals(GameState.INGAME)) {
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if (event.getItem().getType().equals(Material.ECHO_SHARD) && !game.getGameState().equals(GameState.INGAME)) {
                 player.sendMessage(I18n.format(player, "game.title.teleport.bottom", game.getPrefix()));
                 player.playSound(player.getLocation(), Sound.ENTITY_ALLAY_HURT, 10, 2);
                 player.teleport(new Location(Bukkit.getWorld("world"), 97.5, 107, -237.5, 45, -8));

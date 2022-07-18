@@ -29,7 +29,7 @@ public class MySQL {
     }
 
     public void connectToDatabase() {
-        if(!isConnectedToDatabase()) {
+        if (!isConnectedToDatabase()) {
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true", user, password);
                 TimeSpigotAPI.getInstance().getTimeLogger().log("MySQL connection is connected", LoggerType.INFO);
@@ -45,7 +45,7 @@ public class MySQL {
     }
 
     public void disconnectFromDatabase() {
-        if(isConnectedToDatabase()) {
+        if (isConnectedToDatabase()) {
             try {
                 connection.close();
                 TimeSpigotAPI.getInstance().getTimeLogger().log("MySQL Connection ➳➳ Closed", LoggerType.INFO);

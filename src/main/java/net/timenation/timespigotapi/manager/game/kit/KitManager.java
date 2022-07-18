@@ -29,7 +29,7 @@ public class KitManager {
 
     public Kit getRegistedKit(String kitName) {
         for (Kit registedKit : registedKits) {
-            if(registedKit.getKitName().equals(kitName)) return registedKit;
+            if (registedKit.getKitName().equals(kitName)) return registedKit;
         }
         return null;
     }

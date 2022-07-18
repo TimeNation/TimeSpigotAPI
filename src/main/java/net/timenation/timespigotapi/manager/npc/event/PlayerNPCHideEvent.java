@@ -10,75 +10,75 @@ import org.jetbrains.annotations.NotNull;
  */
 public class PlayerNPCHideEvent extends PlayerNPCEvent {
 
-  private static final HandlerList HANDLER_LIST = new HandlerList();
+    private static final HandlerList HANDLER_LIST = new HandlerList();
 
-  /**
-   * The reason why the npc was hidden.
-   */
-  private final Reason reason;
-
-  /**
-   * Constructs a new event instance.
-   *
-   * @param who    The player who is no longer seeing the npc
-   * @param npc    The npc the player is no longer seeing
-   * @param reason The reason why the npc was hidden
-   */
-  public PlayerNPCHideEvent(Player who, NPC npc, Reason reason) {
-    super(who, npc);
-    this.reason = reason;
-  }
-
-  /**
-   * Get the handlers for this event.
-   *
-   * @return the handlers for this event.
-   */
-  @NotNull
-  public static HandlerList getHandlerList() {
-    return HANDLER_LIST;
-  }
-
-  /**
-   * @return The reason why the npc was hidden
-   */
-  @NotNull
-  public Reason getReason() {
-    return this.reason;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @NotNull
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLER_LIST;
-  }
-
-  /**
-   * Represents a reason why a npc was hidden for a player.
-   */
-  public enum Reason {
     /**
-     * The player has manually been excluded from seeing the npc.
+     * The reason why the npc was hidden.
      */
-    EXCLUDED,
+    private final Reason reason;
+
     /**
-     * The distance from npc and player is now higher than the configured spawn distance.
+     * Constructs a new event instance.
+     *
+     * @param who    The player who is no longer seeing the npc
+     * @param npc    The npc the player is no longer seeing
+     * @param reason The reason why the npc was hidden
      */
-    SPAWN_DISTANCE,
+    public PlayerNPCHideEvent(Player who, NPC npc, Reason reason) {
+        super(who, npc);
+        this.reason = reason;
+    }
+
     /**
-     * NPC was in an unloaded chunk.
+     * Get the handlers for this event.
+     *
+     * @return the handlers for this event.
      */
-    UNLOADED_CHUNK,
+    @NotNull
+    public static HandlerList getHandlerList() {
+        return HANDLER_LIST;
+    }
+
     /**
-     * The npc was removed from the pool.
+     * @return The reason why the npc was hidden
      */
-    REMOVED,
+    @NotNull
+    public Reason getReason() {
+        return this.reason;
+    }
+
     /**
-     * The player seeing the npc respawned.
+     * {@inheritDoc}
      */
-    RESPAWNED
-  }
+    @NotNull
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLER_LIST;
+    }
+
+    /**
+     * Represents a reason why a npc was hidden for a player.
+     */
+    public enum Reason {
+        /**
+         * The player has manually been excluded from seeing the npc.
+         */
+        EXCLUDED,
+        /**
+         * The distance from npc and player is now higher than the configured spawn distance.
+         */
+        SPAWN_DISTANCE,
+        /**
+         * NPC was in an unloaded chunk.
+         */
+        UNLOADED_CHUNK,
+        /**
+         * The npc was removed from the pool.
+         */
+        REMOVED,
+        /**
+         * The player seeing the npc respawned.
+         */
+        RESPAWNED
+    }
 }
